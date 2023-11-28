@@ -3,3 +3,5 @@ steps:
   args: ['build', '-t', 'gcr.io/linsimontao-cloud-run/cloud-run:$SHORT_SHA', '.']
 - name: 'gcr.io/cloud-builders/docker'
   args: ['push', 'gcr.io/linsimontao-cloud-run/cloud-run:$SHORT_SHA']
+- name: 'gcr.io/cloud-builders/gcloud'
+  args: ['run', 'deploy', 'linsimontao-cloud-run', '--region=asia-northeast1', '--platform=managed', '--image=gcr.io/linsimontao-cloud-run/cloud-run:$SHORT_SHA']
